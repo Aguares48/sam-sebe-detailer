@@ -21,7 +21,7 @@
         
         /* ВОЗВРАЩЕННЫЙ СТИЛЬ: ФОТО НА ВЕСЬ ЗАДНИЙ ПЛАН КАРТОЧКИ С РАЗМЫТИЕМ */
         .product-card{position:relative;background-size:cover;background-position:center;border:2px solid #ff0055;box-shadow:0 0 12px rgba(255,0,85,.3);border-radius:12px;overflow:hidden;min-height:520px}
-        .product-card::before {content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,.55);backdrop-filter:blur(8px) brightness(.45);-webkit-backdrop-filter:blur(8px) brightness(.45);z-index:1}
+        .product-card::before {content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,.55);backdrop-filter:blur(4px) brightness(.45);-webkit-backdrop-filter:blur(8px) brightness(.45);z-index:1}
         
         .card-inner-content{position:relative;z-index:2;padding:20px;height:100%;display:flex;flex-direction:column;justify-content:space-between}
         .card-header-row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px}
