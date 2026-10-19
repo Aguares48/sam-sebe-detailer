@@ -11,7 +11,7 @@
         header{text-align:center;padding:25px 0 35px 0}
         header h1{font-size:36px;font-weight:900;letter-spacing:1.5px;background:linear-gradient(45deg,#ff0055,#00ffcc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 15px rgba(0,255,204,.2);text-transform:uppercase}
         .header-desc {max-width:700px;margin:15px auto 0 auto;color:#00ffcc;font-size:16px;font-weight:500;text-shadow:0 0 8px rgba(0,255,204,.2);line-height:1.5}
-        .header-subnote {max-width:800px;margin:12px auto 0 auto;color:#aaa;font-size:13.5px;line-height:1.5;font-style:italic}
+        .header-subnote {max-width:800px;margin:12px auto 0 auto;color:#00ffcc;text-shadow:0 0 10px rgba(0,255,204,.3);font-weight:500;font-size:13.5px;line-height:1.5}
         .main-layout{display:flex;flex-direction:column;gap:20px}
         @media (min-width:900px){.main-layout{flex-direction:row;align-items:flex-start}}
         .products-grid{flex:2;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
@@ -63,190 +63,111 @@
     <header>
         <h1>🔥 САМ СЕБЕ ДЕТЕЙЛЕР 🔥</h1>
         <p class="header-desc">Инновационные и премиальные средства для глубокого обновления, реставрации и защиты авто.</p>
-        <p class="header-subnote">Также вы можете обратиться лично и получить профессиональную充консультацию по нанесению любого средства перед покупкой. Зачем переплачивать большие деньги детейлингам, когда вы сможете всё сделать сами за 30 минут у себя в гараже.</p>
+        <p class="header-subnote">Также вы можете обратиться лично и получить профессиональную консультацию по нанесению любого средства перед покупкой. Зачем переплачивать большие деньги детейлингам, когда вы сможете всё сделать сами за 30 минут у себя в гараже.</p>
     </header>
-    
     <div class="main-layout">
         <div class="products-grid">
             <!-- Товар 1 -->
             <div class="product-card" style="background-image: url('veteran.jpg');">
                 <div class="card-inner-content">
                     <div>
-                        <div class="card-header-row">
-                            <div class="product-title">Кварц для кожи Veteran</div>
-                            <div class="product-price-tag">1200 руб.</div>
-                        </div>
-                        <div class="product-desc">Премиальное кварцевое покрытие для долговременной защиты кожаной обивки салона от выгорания, трещин, истирания и загрязнений.</div>
-                        <div class="product-specs">
-                            <div>Комплект: <span>Флакон + 2 аппликатора</span></div>
-                        </div>
+                        <div class="card-header-row"><div class="product-title">Кварц для кожи Veteran</div><div class="product-price-tag">1200 руб.</div></div>
+                        <div class="product-desc">Премиальное кварцевое покрытие для защиты кожаной обивки салона от выгорания, трещин и загрязнений.</div>
                     </div>
                     <div class="buttons-group">
-                        <button class="btn-instruction" onclick="openModal('Кварц Veteran','ИНСТРУКЦИЯ:\n1. Очистите и высушите кожу.\n2. Нанесите 5-8 капель на аппликатор.\n3. Равномерно распределите.\n4. Через 3 минуты располируйте сухой микрофиброй.')">Инструкция ➔</button>
-                        <label class="add-to-kit">
-                            <input type="checkbox" class="prod-check" data-name="Кварц для кожи Veteran" data-price="1200" onchange="updateCartAndGifts()">
-                            <span>В комплект</span>
-                        </label>
+                        <button class="btn-instruction" onclick="openModal('Кварц Veteran','ИНСТРУКЦИЯ:\n1. Нанесите 5-8 капель на аппликатор.\n2. Распределите.\n3. Через 3 минуты располируйте фиброй.')">Инструкция ➔</button>
+                        <label class="add-to-kit"><input type="checkbox" class="prod-check" data-name="Кварц для кожи Veteran" data-price="1200" onchange="updateCartAndGifts()"><span>В комплект</span></label>
                     </div>
                 </div>
             </div>
-
             <!-- Товар 2 -->
             <div class="product-card" style="background-image: url('fary.jpg');">
                 <div class="card-inner-content">
                     <div>
-                        <div class="card-header-row">
-                            <div class="product-title">Набор для фар</div>
-                            <div class="product-price-tag">900 руб.</div>
-                        </div>
-                        <div class="product-desc">Комплексная система для восстановления прозрачности фар. Удаляет мутный налет и создает прочный UV-слой.</div>
-                        <div class="product-specs">
-                            <div>Комплект: <span>Полироль, защита, губка, фибра</span></div>
-                        </div>
+                        <div class="card-header-row"><div class="product-title">Набор для фар</div><div class="product-price-tag">900 руб.</div></div>
+                        <div class="product-desc">Комплексная система для восстановления прозрачности фар. Удаляет мутный налет и создает UV-слой.</div>
                     </div>
                     <div class="buttons-group">
-                        <button class="btn-instruction" onclick="openModal('Набор для фар','ИНСТРУКЦИЯ:\n1. Очистите фары.\n2. Нанесите полироль на губку и обработайте фару круговыми движениями.\n3. Удалите остатки фиброй.\n4. Нанесите защитный UV-состав.')">Инструкция ➔</button>
-                        <label class="add-to-kit">
-                            <input type="checkbox" class="prod-check" data-name="Набор для фар" data-price="900" onchange="updateCartAndGifts()">
-                            <span>В комплект</span>
-                        </label>
+                        <button class="btn-instruction" onclick="openModal('Набор для фар','ИНСТРУКЦИЯ:\n1. Нанесите полироль на губку и обработайте фару.\n2. Нанесите защитный UV-состав.')">Инструкция ➔</button>
+                        <label class="add-to-kit"><input type="checkbox" class="prod-check" data-name="Набор для фар" data-price="900" onchange="updateCartAndGifts()"><span>В комплект</span></label>
                     </div>
                 </div>
             </div>
-
             <!-- Товар 3 -->
-            <div class="product-card" style="background-image: url('remkomplekt.jpg');">
+            <div class="product-card" style="background-image: url('remont.jpg');">
                 <div class="card-inner-content">
                     <div>
-                        <div class="card-header-row">
-                            <div class="product-title">Ремкомплект кожи 7-в-1</div>
-                            <div class="product-price-tag">1000 руб.</div>
-                        </div>
-                        <div class="product-desc">Универсальный набор для устранения прожогов, порезов, задиров и потертостей на сиденьях и элементах интерьера из кожи.</div>
-                        <div class="product-specs">
-                            <div>Комплект: <span>Краски, клей, шпатель, текстурная бумага</span></div>
-                        </div>
+                        <div class="card-header-row"><div class="product-title">Ремкомплект кожи 7-в-1</div><div class="product-price-tag">1000 руб.</div></div>
+                        <div class="product-desc">Универсальный набор для устранения прожогов, порезов, задиров и потертостей на сиденьях из кожи.</div>
                     </div>
                     <div class="buttons-group">
-                        <button class="btn-instruction" onclick="openModal('Ремкомплект 7-в-1','ИНСТРУКЦИЯ:\n1. Обезжирьте поврежденный участок.\n2. При порезах используйте клей из комплекта.\n3. Подберите цвет краски, нанесите точечно шпателем.\n4. Приложите текстурную бумагу для воссоздания рельефа.')">Инструкция ➔</button>
-                        <label class="add-to-kit">
-                            <input type="checkbox" class="prod-check" data-name="Ремкомплект кожи 7-в-1" data-price="1000" onchange="updateCartAndGifts()">
-                            <span>В комплект</span>
-                        </label>
+                        <button class="btn-instruction" onclick="openModal('Ремкомплект 7-в-1','ИНСТРУКЦИЯ:\n1. Обезжирьте участок.\n2. Подберите цвет краски, нанесите шпателем.\n3. Приложите текстурную бумагу.')">Инструкция ➔</button>
+                        <label class="add-to-kit"><input type="checkbox" class="prod-check" data-name="Ремкомплект кожи 7-в-1" data-price="1000" onchange="updateCartAndGifts()"><span>В комплект</span></label>
                     </div>
                 </div>
             </div>
-
             <!-- Товар 4 -->
-            <div class="product-card" style="background-image: url('plastic.jpg');">
+            <div class="product-card" style="background-image: url('plastik.jpg');">
                 <div class="card-inner-content">
                     <div>
-                        <div class="card-header-row">
-                            <div class="product-title">Восстановитель пластика</div>
-                            <div class="product-price-tag">600 руб.</div>
-                        </div>
-                        <div class="product-desc">Глубоко проникающий состав для реставрации структуры пластика. Возвращает заводской насыщенный цвет и матовый блеск.</div>
-                        <div class="product-specs">
-                            <div>Комплект: <span>Реставратор + аппликатор</span></div>
-                        </div>
+                        <div class="card-header-row"><div class="product-title">Восстановитель пластика</div><div class="product-price-tag">600 руб.</div></div>
+                        <div class="product-desc">Глубоко проникающий состав для реставрации структуры пластика. Возвращает насыщенный цвет и матовый блеск.</div>
                     </div>
                     <div class="buttons-group">
-                        <button class="btn-instruction" onclick="openModal('Восстановитель пластика','ИНСТРУКЦИЯ:\n1. Очистите пластиковую деталь.\n2. Нанесите несколько капель состава на аппликатор.\n3. Равномерно вотрите в пластик.\n4. Дайте впитаться 5 минут, излишки уберите салфеткой.')">Инструкция ➔</button>
-                        <label class="add-to-kit">
-                            <input type="checkbox" class="prod-check" data-name="Восстановитель пластика" data-price="600" onchange="updateCartAndGifts()">
-                            <span>В комплект</span>
-                        </label>
+                        <button class="btn-instruction" onclick="openModal('Восстановитель пластика','ИНСТРУКЦИЯ:\n1. Нанесите состав на аппликатор.\n2. Равномерно вотрите в пластик.\n3. Дайте впитаться 5 минут.')">Инструкция ➔</button>
+                        <label class="add-to-kit"><input type="checkbox" class="prod-check" data-name="Восстановитель пластика" data-price="600" onchange="updateCartAndGifts()"><span>В комплект</span></label>
                     </div>
                 </div>
             </div>
             <!-- Товар 5 -->
-            <div class="product-card" style="background-image: url('mizilife.jpg');">
+            <div class="product-card" style="background-image: url('krem.jpg');">
                 <div class="card-inner-content">
                     <div>
-                        <div class="card-header-row">
-                            <div class="product-title">Крем-кондиционер Mizilife</div>
-                            <div class="product-price-tag">400 руб.</div>
-                        </div>
-                        <div class="product-desc">Деликатный крем для очистки и питания кожи. Препятствует старению обивки, сохраняя её первозданную мягкость и эластичность.</div>
-                        <div class="product-specs">
-                            <div>Комплект: <span>Очищающий крем + спонж</span></div>
-                        </div>
+                        <div class="card-header-row"><div class="product-title">Крем-кондиционер Mizilife</div><div class="product-price-tag">400 руб.</div></div>
+                        <div class="product-desc">Деликатный крем для очистки и питания кожи. Препятствует старению обивки, сохраняя её первозданную мягкость.</div>
                     </div>
                     <div class="buttons-group">
-                        <button class="btn-instruction" onclick="openModal('Крем Mizilife','ИНСТРУКЦИЯ:\n1. Нанесите небольшое количество крема на спонж.\n2. Круговыми легкими движениями вотрите в кожу.\n3. Оставьте на 10 минут для впитывания.\n4. Протрите поверхность чистой салфеткой.')">Инструкция ➔</button>
-                        <label class="add-to-kit">
-                            <input type="checkbox" class="prod-check" data-name="Крем-кондиционер Mizilife" data-price="400" onchange="updateCartAndGifts()">
-                            <span>В комплект</span>
-                        </label>
+                        <button class="btn-instruction" onclick="openModal('Крем Mizilife','ИНСТРУКЦИЯ:\n1. Нанесите крем на спонж.\n2. Ветрите в кожу круговыми движениями.\n3. Оставьте на 10 минут, протрите салфеткой.')">Инструкция ➔</button>
+                        <label class="add-to-kit"><input type="checkbox" class="prod-check" data-name="Крем-кондиционер Mizilife" data-price="400" onchange="updateCartAndGifts()"><span>В комплект</span></label>
                     </div>
                 </div>
             </div>
-
             <!-- Товар 6 -->
-            <div class="product-card" style="background-image: url('microfibra.jpg');">
+            <div class="product-card" style="background-image: url('fibra9.jpg');">
                 <div class="card-inner-content">
                     <div>
-                        <div class="card-header-row">
-                            <div class="product-title">Набор микрофибр 9-в-1</div>
-                            <div class="product-price-tag">400 руб.</div>
-                        </div>
-                        <div class="product-desc">Премиальный комплект ультрамягких салфеток, аппликаторов и щеток. Идеально собирает пыль, не оставляет ворса и царапин.</div>
-                        <div class="product-specs">
-                            <div>Комплект: <span>9 предметов (салфетки, губки, щетка)</span></div>
-                        </div>
+                        <div class="card-header-row"><div class="product-title">Набор микрофибр 9-в-1</div><div class="product-price-tag">400 руб.</div></div>
+                        <div class="product-desc">Премиальный комплект ультрамягких салфеток, аппликаторов и щеток. Идеально собирает пыль, не оставляет ворса.</div>
                     </div>
                     <div class="buttons-group">
-                        <button class="btn-instruction" onclick="openModal('Набор микрофибр 9-в-1','ИНСТРУКЦИЯ:\nИспользуйте специализированные салфетки из набора для конкретных задач: плотные — для располировки восков и кварца, мягкие — для стекол.')">Инструкция ➔</button>
-                        <label class="add-to-kit">
-                            <input type="checkbox" class="prod-check" data-name="Набор микрофибр 9-в-1" data-price="400" onchange="updateCartAndGifts()">
-                            <span>В комплект</span>
-                        </label>
+                        <button class="btn-instruction" onclick="openModal('Набор микрофибр 9-в-1','ИНСТРУКЦИЯ:\nИспользуйте плотные салфетки для располировки восков и кварца, а мягкие — для очистки стекол и глянца.')">Инструкция ➔</button>
+                        <label class="add-to-kit"><input type="checkbox" class="prod-check" data-name="Набор микрофибр 9-в-1" data-price="400" onchange="updateCartAndGifts()"><span>В комплект</span></label>
                     </div>
                 </div>
             </div>
-
             <!-- Товар 7 -->
             <div class="product-card" style="background-image: url('towel.jpg');">
                 <div class="card-inner-content">
                     <div>
-                        <div class="card-header-row">
-                            <div class="product-title">Twisted Loop</div>
-                            <div class="product-price-tag">300 руб.</div>
-                        </div>
-                        <div class="product-desc">Высокоэффективное полотенце из микрофибры с плетением «крученая петля». Обладает экстремальной впитываемостью для быстрой сушки кузова.</div>
-                        <div class="product-specs">
-                            <div>Комплект: <span>Полотенце крученая петля (1 шт)</span></div>
-                        </div>
+                        <div class="card-header-row"><div class="product-title">Twisted Loop</div><div class="product-price-tag">300 руб.</div></div>
+                        <div class="product-desc">Высокоэффективное полотенце из микрофибры с плетением «крученая петля». Обладает экстремальной впитываемостью.</div>
                     </div>
                     <div class="buttons-group">
-                        <button class="btn-instruction" onclick="openModal('Twisted Loop полотенце','ИНСТРУКЦИЯ:\nРазложите полотенце на влажную поверхность автомобиля и плавно потяните за края. Не требует сильного нажима. После использования просушите.')">Инструкция ➔</button>
-                        <label class="add-to-kit">
-                            <input type="checkbox" class="prod-check" data-name="Полотенце Twisted Loop" data-price="300" onchange="updateCartAndGifts()">
-                            <span>В комплект</span>
-                        </label>
+                        <button class="btn-instruction" onclick="openModal('Twisted Loop полотенце','ИНСТРУКЦИЯ:\nРазложите полотенце на кузов и плавно потяните за края без сильного нажима. После использования просушите в тени.')">Инструкция ➔</button>
+                        <label class="add-to-kit"><input type="checkbox" class="prod-check" data-name="Полотенце Twisted Loop" data-price="300" onchange="updateCartAndGifts()"><span>В комплект</span></label>
                     </div>
                 </div>
             </div>
-
             <!-- Товар 8 -->
             <div class="product-card" style="background-image: url('tire_paste.jpg');">
                 <div class="card-inner-content">
                     <div>
-                        <div class="card-header-row">
-                            <div class="product-title">Tire Polishing Paste</div>
-                            <div class="product-price-tag">200 руб.</div>
-                        </div>
-                        <div class="product-desc">Премиальная паста-чернитель для глубокого восстановления и кондиционирования шин. Защищает резину от растрескивания и придает сияющий блеск.</div>
-                        <div class="product-specs">
-                            <div>Комплект: <span>Паста 30г + губка-аппликатор</span></div>
-                        </div>
+                        <div class="card-header-row"><div class="product-title">Tire Polishing Paste</div><div class="product-price-tag">200 руб.</div></div>
+                        <div class="product-desc">Премиальная паста-чернитель для глубокого восстановления шин. Защищает резину от растрескивания и придает блеск.</div>
                     </div>
                     <div class="buttons-group">
-                        <button class="btn-instruction" onclick="openModal('Tire Polishing Paste','ИНСТРУКЦИЯ:\n1. Вымойте и высушите шины.\n2. Наберите небольшое количество пасты на губку.\n3. Равномерно распределите по боковине шины.\n4. Дайте впитаться 5-10 минут.')">Инструкция ➔</button>
-                        <label class="add-to-kit">
-                            <input type="checkbox" class="prod-check" data-name="Паста-чернитель Tire Paste" data-price="200" onchange="updateCartAndGifts()">
-                            <span>В комплект</span>
-                        </label>
+                        <button class="btn-instruction" onclick="openModal('Tire Polishing Paste','ИНСТРУКЦИЯ:\n1. Наберите немного пасты на губку.\n2. Равномерно распределите по боковине шины.\n3. Дайте впитаться 5-10 минут.')">Инструкция ➔</button>
+                        <label class="add-to-kit"><input type="checkbox" class="prod-check" data-name="Паста-чернитель Tire Paste" data-price="200" onchange="updateCartAndGifts()"><span>В комплект</span></label>
                     </div>
                 </div>
             </div>
@@ -256,27 +177,16 @@
         <div class="gifts-sidebar">
             <h2>🎁 ВАШИ ПОДАРКИ</h2>
             <p class="gift-info-tag">Чем больше средств вы добавляете в корзину, тем больше скидка и подарки для более профессионального нанесения средств.</p>
-            <div class="gift-node" id="gift-delivery">
-                <span>🚚 Бесплатная доставка (от 3500р)</span>
-            </div>
+            <div class="gift-node" id="gift-delivery"><span>🚚 Бесплатная доставка (от 3500р)</span></div>
         </div>
     </div>
-
-    <footer class="site-info-footer">
-        <p>© 2026 Сам Себе Детейлер. Все права защищены.</p>
-    </footer>
+    <footer class="site-info-footer"><p>© 2026 Сам Себе Детейлер. Все права защищены.</p></footer>
 </div>
-<!-- Плавающая корзина с полем адреса и выбором мессенджера -->
+<!-- Плавающая корзина, адрес и выбор мессенджера -->
 <div class="sticky-cart">
     <div class="cart-content">
-        <div class="cart-stats">
-            Выбрано: <span id="cart-count">0</span> | Сумма: <span id="cart-total">0</span> руб.
-        </div>
-        
-        <div class="address-container">
-            <input type="text" id="client-address" class="address-input" placeholder="Введите адрес доставки...">
-        </div>
-        
+        <div class="cart-stats">Выбрано: <span id="cart-count">0</span> | Сумма: <span id="cart-total">0</span> руб.</div>
+        <div class="address-container"><input type="text" id="client-address" class="address-input" placeholder="Введите адрес доставки..."></div>
         <div class="order-actions">
             <button class="btn-main-submit" onclick="toggleMessengerMenu(event)">Оформить заказ ➔</button>
             <div class="messenger-menu" id="msgMenu">
@@ -287,7 +197,7 @@
     </div>
 </div>
 
-<!-- Модальное окно для инструкций -->
+<!-- Окно для инструкций -->
 <div class="modal" id="infoModal">
     <div class="modal-content">
         <button class="modal-close" onclick="closeModal()">×</button>
@@ -297,96 +207,45 @@
 </div>
 
 <script>
-    // ⚙️ НАСТРОЙКА КОНТАКТОВ: Укажи здесь свои данные!
-    const WHATSAPP_PHONE = "79991112233"; // Твой номер телефона для WhatsApp (без знака +)
-    const MAX_URL_BASE = "https://messenger.example"; // Твоя ссылка на чат в MAX
+    // ⚙️ ЗАПОЛНИ СВОИ ДАННЫЕ ЗДЕСЬ:
+    const WHATSAPP_PHONE = "79991112233"; // Твой номер телефона для WhatsApp (без +)
+    const MAX_URL_BASE = "https://messenger.example"; // Ссылка на твой чат в MAX
 
     function updateCartAndGifts() {
         const checkboxes = document.querySelectorAll('.prod-check');
-        let total = 0;
-        let count = 0;
-
-        checkboxes.forEach(box => {
-            if (box.checked) {
-                total += parseInt(box.dataset.price);
-                count++;
-            }
-        });
-
+        let total = 0, count = 0;
+        checkboxes.forEach(box => { if (box.checked) { total += parseInt(box.dataset.price); count++; } });
         document.getElementById('cart-count').innerText = count;
         document.getElementById('cart-total').innerText = total;
 
-        // Подсветка бесплатной доставки при сумме от 3500р
         const deliveryGift = document.getElementById('gift-delivery');
-        if (total >= 3500) {
-            deliveryGift.classList.add('unlocked');
-        } else {
-            deliveryGift.classList.remove('unlocked');
-        }
+        if (total >= 3500) { deliveryGift.classList.add('unlocked'); } 
+        else { deliveryGift.classList.remove('unlocked'); }
     }
 
-    function toggleMessengerMenu(event) {
-        event.stopPropagation();
-        document.getElementById('msgMenu').classList.toggle('show');
-    }
-
-    // Закрытие меню выбора мессенджера при клике в любое другое место экрана
-    document.addEventListener('click', function() {
-        document.getElementById('msgMenu').classList.remove('show');
-    });
+    function toggleMessengerMenu(event) { event.stopPropagation(); document.getElementById('msgMenu').classList.toggle('show'); }
+    document.addEventListener('click', function() { document.getElementById('msgMenu').classList.remove('show'); });
 
     function sendOrder(type) {
         const checkboxes = document.querySelectorAll('.prod-check');
-        let selectedProducts = [];
-        let total = 0;
+        let selectedProducts = [], total = 0;
+        checkboxes.forEach(box => { if (box.checked) { selectedProducts.push(`• ${box.dataset.name} (${box.dataset.price} руб.)`); total += parseInt(box.dataset.price); } });
 
-        checkboxes.forEach(box => {
-            if (box.checked) {
-                selectedProducts.push(`• ${box.dataset.name} (${box.dataset.price} руб.)`);
-                total += parseInt(box.dataset.price);
-            }
-        });
-
-        if (selectedProducts.length === 0) {
-            alert('Пожалуйста, добавьте в комплект хотя бы одно средство!');
-            return;
-        }
-
+        if (selectedProducts.length === 0) { alert('Пожалуйста, добавьте в комплект хотя бы одно средство!'); return; }
         const address = document.getElementById('client-address').value.trim();
-        if (!address) {
-            alert('Пожалуйста, введите адрес доставки, чтобы мы знали, куда отправить заказ!');
-            return;
-        }
+        if (!address) { alert('Пожалуйста, введите адрес доставки!'); return; }
 
-        // Формирование красивого сообщения для мессенджера
-        let message = `🔥 ЗАКАЗ С САЙТА «САМ СЕБЕ ДЕТЕЙЛЕР» 🔥\n\n`;
-        message += `📦 Состав комплекта:\n${selectedProducts.join('\n')}\n\n`;
-        message += `💵 Итоговая сумма: ${total} руб.\n`;
-        if (total >= 3500) {
-            message += `🚚 Доставка: Бесплатная (бонус от 3500р включен!)\n`;
-        } else {
-            message += `🚚 Доставка: Платная (до 3500р)\n`;
-        }
-        message += `📍 Адрес доставки: ${address}`;
-
+        let message = `🔥 ЗАКАЗ С САЙТА «САМ СЕБЕ ДЕТЕЙЛЕР» 🔥\n\n📦 Состав комплекта:\n${selectedProducts.join('\n')}\n\n💵 Итого: ${total} руб.\n`;
+        message += total >= 3500 ? `🚚 Доставка: Бесплатная (бонус от 3500р включен!)\n` : `🚚 Доставка: Платная\n`;
+        message += `📍 Адрес: ${address}`;
         const encodedMessage = encodeURIComponent(message);
 
-        if (type === 'wa') {
-            window.open(`https://whatsapp.com{WHATSAPP_PHONE}&text=${encodedMessage}`, '_blank');
-        } else if (type === 'max') {
-            window.open(`${MAX_URL_BASE}${encodedMessage}`, '_blank');
-        }
+        if (type === 'wa') { window.open(`https://whatsapp.com{WHATSAPP_PHONE}&text=${encodedMessage}`, '_blank'); } 
+        else if (type === 'max') { window.open(`${MAX_URL_BASE}${encodedMessage}`, '_blank'); }
     }
 
-    function openModal(title, body) {
-        document.getElementById('mTitle').innerText = title;
-        document.getElementById('mBody').innerText = body;
-        document.getElementById('infoModal').style.display = 'flex';
-    }
-
-    function closeModal() {
-        document.getElementById('infoModal').style.display = 'none';
-    }
+    function openModal(title, body) { document.getElementById('mTitle').innerText = title; document.getElementById('mBody').innerText = body; document.getElementById('infoModal').style.display = 'flex'; }
+    function closeModal() { document.getElementById('infoModal').style.display = 'none'; }
 </script>
 </body>
 </html>
