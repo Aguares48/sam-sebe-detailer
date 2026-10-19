@@ -27,9 +27,6 @@
         .product-title{font-size:20px;font-weight:bold;color:#ff0055;text-shadow:0 0 10px rgba(255,0,85,.5)}
         .product-price-tag{font-size:18px;font-weight:800;color:#00ffcc;white-space:nowrap;text-shadow:0 0 10px rgba(0,255,204,.5)}
         .product-desc{font-size:14px;color:#e5e5e5;line-height:1.5;margin-bottom:15px}
-        .product-specs{font-size:13px;color:#aaa;margin-bottom:15px}
-        .product-specs div{margin-bottom:4px}
-        .product-specs span{color:#fff;font-weight:500}
         .buttons-group{display:flex;flex-direction:column;gap:10px;margin-top:auto}
         .btn-instruction{background:transparent;border:1px solid #ff0055;color:#ff0055;padding:10px;border-radius:6px;cursor:pointer;font-weight:bold;font-size:14px;text-align:center;text-decoration:none}
         .btn-instruction:hover{background:#ff0055;color:#fff}
@@ -140,7 +137,7 @@
                         <div class="product-desc">Премиальный комплект ультрамягких салфеток, аппликаторов и щеток. Идеально собирает пыль, не оставляет ворса.</div>
                     </div>
                     <div class="buttons-group">
-                        <button class="btn-instruction" onclick="openModal('Набор микрофибр 9-в-1','ИНСТРУКЦИЯ:\nИспользуйте плотные салфетки для располировки восков и кварца, а мягкие — для очистки стекол и глянца.')">Инструкция ➔</button>
+                        <button class="btn-instruction" onclick="openModal('Набор микрофибр 9-в-1','ИНСТРУКЦИЯ:\nИспользуйте плотные салфетки для располировки восков и кварца, а мягкие — для очистки стекол.')">Инструкция ➔</button>
                         <label class="add-to-kit"><input type="checkbox" class="prod-check" data-name="Набор микрофибр 9-в-1" data-price="400" onchange="updateCartAndGifts()"><span>В комплект</span></label>
                     </div>
                 </div>
@@ -207,9 +204,8 @@
 </div>
 
 <script>
-    // ⚙️ ЗАПОЛНИ СВОИ ДАННЫЕ ЗДЕСЬ:
-    const WHATSAPP_PHONE = "79991112233"; // Твой номер телефона для WhatsApp (без +)
-    const MAX_URL_BASE = "https://messenger.example"; // Ссылка на твой чат в MAX
+    // ⚙️ ЗАПОЛНЕННЫЕ ДАННЫЕ ВЛАДЕЛЬЦА:
+    const WHATSAPP_PHONE = "79092245434"; // Твой личный номер телефона
 
     function updateCartAndGifts() {
         const checkboxes = document.querySelectorAll('.prod-check');
@@ -238,10 +234,19 @@
         let message = `🔥 ЗАКАЗ С САЙТА «САМ СЕБЕ ДЕТЕЙЛЕР» 🔥\n\n📦 Состав комплекта:\n${selectedProducts.join('\n')}\n\n💵 Итого: ${total} руб.\n`;
         message += total >= 3500 ? `🚚 Доставка: Бесплатная (бонус от 3500р включен!)\n` : `🚚 Доставка: Платная\n`;
         message += `📍 Адрес: ${address}`;
-        const encodedMessage = encodeURIComponent(message);
 
-        if (type === 'wa') { window.open(`https://whatsapp.com{WHATSAPP_PHONE}&text=${encodedMessage}`, '_blank'); } 
-        else if (type === 'max') { window.open(`${MAX_URL_BASE}${encodedMessage}`, '_blank'); }
+        if (type === 'wa') { 
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://whatsapp.com{WHATSAPP_PHONE}&text=${encodedMessage}`, '_blank'); 
+        } 
+        else if (type === 'max') { 
+            // Железобетонный метод для MAX: копирование готового текста в буфер обмена
+            navigator.clipboard.writeText(message).then(() => {
+                alert('Текст заказа успешно скопирован в буфер обмена!\n\nОткройте мессенджер MAX и просто вставьте сообщение (Ctrl + V или долгое нажатие) в чат.');
+            }).catch(err => {
+                alert('Не удалось скопировать автоматически. Скопируйте текст из поля адреса:\n\n' + message);
+            });
+        }
     }
 
     function openModal(title, body) { document.getElementById('mTitle').innerText = title; document.getElementById('mBody').innerText = body; document.getElementById('infoModal').style.display = 'flex'; }
