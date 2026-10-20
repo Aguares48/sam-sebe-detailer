@@ -46,7 +46,7 @@
         .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:10000;justify-content:center;align-items:center;padding:20px}
         .modal-content{background:#1e1e2f;border:2px solid #ff0055;box-shadow:0 0 20px rgba(255,0,85,.5);border-radius:12px;max-width:500px;width:100%;padding:25px;position:relative}
         .modal-title{font-size:22px;font-weight:bold;color:#ff0055;margin-bottom:15px}
-        .modal-body{font-size:15px;line-height:1.6;color:#e0e0e0;white-space:pre-line}
+        .modal-body{font-size:15px;line-height:1.6;color:#e0e0e0}
         .modal-close{position:absolute;top:15px;right:15px;font-size:28px;color:#aaa;cursor:pointer;background:none;border:none}
     </style>
 </head>
@@ -93,7 +93,7 @@
                         <div class="product-desc">Универсальный набор для устранения прожогов, порезов, задиров и потертостей на сиденьях из кожи.</div>
                     </div>
                     <div class="buttons-group">
-                        <button class="btn-instruction" onclick="openModal('Ремкомплект 7-в-1','ИНСТРУКЦИЯ:\n1. Обезжирьте участок.\n2. Подберите цвет краски, нанесите шпателем.\n3. Приложите текстурную бумагу.')">Инструкция ➔</button>
+                        <button class="btn-instruction" onclick="openModal('Ремкомплект 7-в-1','ИНСТРУКЦИЯ:\n1. Обезжирьте участок.\n2. Подберите цвет краски, нанесите шпателем.\n3. Приложите текстурную бумагу.')">Инструксья ➔</button>
                         <label class="add-to-kit"><input type="checkbox" class="prod-check" data-name="Ремкомплект кожи 7-в-1" data-price="1000" onchange="updateCartAndGifts()"><span>В комплект</span></label>
                     </div>
                 </div>
@@ -192,7 +192,6 @@
         <div class="modal-body" id="mBody" style="white-space: pre-line; margin-top: 15px;">Содержимое</div>
     </div>
 </div>
-
 <script>
     function updateCartAndGifts() {
         const checkboxes = document.querySelectorAll('.prod-check');
@@ -215,7 +214,7 @@
         const address = document.getElementById('client-address').value.trim();
         if (!address) { alert('Пожалуйста, введите адрес доставки!'); return; }
 
-        // Сочный текст заказа для отправки
+        // Формируем красивый текст чека
         let message = `🔥 НОВЫЙ ЗАКАЗ «САМ СЕБЕ ДЕТЕЙЛЕР» 🔥\n`;
         message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n`;
         message += `📦 СОСТАВ КОМПЛЕКТА:\n${selectedProducts.join('\n')}\n\n`;
@@ -224,30 +223,41 @@
         message += `📍 АДРЕС: ${address}\n`;
         message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖`;
 
-        // Копируем чек в буфер обмена
+        // Копируем чек в буфер обмена для подстраховки
         navigator.clipboard.writeText(message).then(() => {
-            showOrderModal();
+            showOrderModal(message);
         }).catch(err => {
-            showOrderModal();
+            showOrderModal(message);
         });
     }
 
-    function showOrderModal() {
-        const modalHtml = `Текст вашего чека со всеми товарами успешно скопирован в буфер обмена!\n\n` +
-                          `Отправьте его нам в любой удобный мессенджер:\n\n` +
-                          `🟢 **WhatsApp** или 🔵 **MAX** на номер:\n` +
-                          `👉 **+7 (909) 224-54-34** (Александр Сергеевич)\n\n` +
-                          `🟥 Или в нашу группу **ВКонтакте**:\n` +
-                          `👉 **://vk.com**\n\n` +
-                          `*(Просто откройте чат и выберите «Вставить» или нажмите Ctrl+V)*`;
+    function showOrderModal(message) {
+        // Кодируем готовый чек, чтобы ссылка правильно передала спецсимволы и переносы строк
+        const encodedMsg = encodeURIComponent(message);
+
+        // Формируем прямую ссылку на сообщения твоего сообщества со знаком МИНУС
+        const vkUrl = `https://vk.com{encodedMsg}`;
+
+        // Наполняем модальное окно текстом и кнопкой-ссылкой с автоподстановкой текста
+        const modalHtml = `Ваш чек успешно сформирован и скопирован в буфер обмена!<br><br>` +
+                          `Нажмите кнопку ниже, чтобы отправить его в нашу группу ВКонтакте. Текст заказа подставится <b>автоматически</b> в поле ввода:<br><br>` +
+                          `<a href="${vkUrl}" target="_blank" style="display: inline-block; background: #ff0055; color: #fff; text-decoration: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 10px rgba(255,0,85,0.4);">👉 ОТПРАВИТЬ ЗАКАЗ В ВК ➔</a><br><br>` +
+                          `<i>* Если автоматика соцсети не сработала, просто откройте чат, нажмите «Вставить» (или Ctrl+V) и отправьте сообщение вручную.</i>`;
 
         document.getElementById('mTitle').innerText = '🛒 ЗАКАЗ СФОРМИРОВАН!';
         document.getElementById('mBody').innerHTML = modalHtml;
         document.getElementById('infoModal').style.display = 'flex';
     }
 
-    function openModal(title, body) { document.getElementById('mTitle').innerText = title; document.getElementById('mBody').innerText = body; document.getElementById('infoModal').style.display = 'flex'; }
-    function closeModal() { document.getElementById('infoModal').style.display = 'none'; }
+    function openModal(title, body) { 
+        document.getElementById('mTitle').innerText = title; 
+        document.getElementById('mBody').innerText = body; 
+        document.getElementById('infoModal').style.display = 'flex'; 
+    }
+    
+    function closeModal() { 
+        document.getElementById('infoModal').style.display = 'none'; 
+    }
 </script>
 </body>
 </html>
