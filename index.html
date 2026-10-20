@@ -115,7 +115,7 @@
             <div class="product-card" style="background-image: url('krem.jpg');">
                 <div class="card-inner-content">
                     <div>
-                        <div class="card-header-row"><div class="product-title">К磨-кондиционер Mizilife</div><div class="product-price-tag">400 руб.</div></div>
+                        <div class="card-header-row"><div class="product-title">Крем-кондиционер Mizilife</div><div class="product-price-tag">400 руб.</div></div>
                         <div class="product-desc">Деликатный крем для очистки и питания кожи. Препятствует старению обивки, сохраняя её первозданную мягкость.</div>
                     </div>
                     <div class="buttons-group">
@@ -180,7 +180,7 @@
         <div class="cart-stats">Выбрано: <span id="cart-count">0</span> | Сумма: <span id="cart-total">0</span> руб.</div>
         <div class="address-container"><input type="text" id="client-address" class="address-input" placeholder="Введите адрес доставки..."></div>
         <div class="order-actions">
-            <button class="btn-main-submit" onclick="sendOrderToMax()">Оформить заказ в MAX ➔</button>
+            <button class="btn-main-submit" onclick="sendOrderToVk()">Оформить заказ в VK ➔</button>
         </div>
     </div>
 </div>
@@ -206,7 +206,7 @@
         else { deliveryGift.classList.remove('unlocked'); }
     }
 
-    function sendOrderToMax() {
+    function sendOrderToVk() {
         const checkboxes = document.querySelectorAll('.prod-check');
         let selectedProducts = [], total = 0;
         checkboxes.forEach(box => { if (box.checked) { selectedProducts.push(`• ${box.dataset.name} (${box.dataset.price} руб.)`); total += parseInt(box.dataset.price); } });
@@ -217,18 +217,22 @@
 
         // Сочный текст заказа со смайликами и разделителями
         let message = `🔥 НОВЫЙ ЗАКАЗ «САМ СЕБЕ ДЕТЕЙЛЕР» 🔥\n`;
-        message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n`;
+        message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n`;
         message += `📦 СОСТАВ КОМПЛЕКТА:\n${selectedProducts.join('\n')}\n\n`;
         message += `💰 ИТОГО: ${total} руб.\n`;
         message += total >= 3500 ? `🚚 ДОСТАВКА: Бесплатная (бонус от 3500р включен!)\n` : `🚚 ДОСТАВКА: Платная\n`;
         message += `📍 АДРЕС: ${address}\n`;
-        message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖`;
+        message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖`;
 
-        // Копируем заказ в буфер обмена и мгновенно перенаправляем в твою созданную группу MAX
+        // ID твоей группы ВКонтакте: 242451329
+        const vkGroupId = "242451329";
+
+        // Копируем заказ в буфер обмена и перенаправляем в диалог с твоим сообществом ВК
         navigator.clipboard.writeText(message).then(() => {
-            window.open("https://max.ru", "_blank");
+            window.open(`https://vk.com{vkGroupId}`, '_blank');
         }).catch(err => {
-            alert('Ой, не удалось скопировать заказ автоматически. Пожалуйста, попробуйте еще раз.');
+            // Запасной вариант на случай строгих настроек безопасности браузера
+            window.open(`https://vk.com{vkGroupId}`, '_blank');
         });
     }
 
