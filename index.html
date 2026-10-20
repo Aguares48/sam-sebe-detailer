@@ -225,21 +225,21 @@
 
         // Копируем чек в буфер обмена для надежности
         navigator.clipboard.writeText(message).then(() => {
-            showOrderModal(message);
+            showOrderModal();
         }).catch(err => {
-            showOrderModal(message);
+            showOrderModal();
         });
     }
 
-    function showOrderModal(message) {
-        // Жесткая классическая склейка строки ссылки без опасных кавычек
-        const encodedMsg = encodeURIComponent(message);
-        const vkUrl = "https://vk.com" + encodedMsg;
+    function showOrderModal() {
+        // Короткая прямая ссылка на диалог с сообществом без передачи текста в URL
+        const vkUrl = "https://vk.me";
 
-        const modalHtml = `Ваш чек успешно сформирован и скопирован в буфер обмена!<br><br>` +
-                          `Нажмите кнопку ниже, чтобы отправить его в нашу группу ВКонтакте. Текст заказа подставится <b>автоматически</b> в поле ввода:<br><br>` +
-                          `<a href="` + vkUrl + `" target="_blank" style="display: inline-block; background: #ff0055; color: #fff; text-decoration: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 10px rgba(255,0,85,0.4);">👉 ОТПРАВИТЬ ЗАКАЗ В ВК ➔</a><br><br>` +
-                          `<i>* Если автоматика соцсети не сработала, просто откройте чат, нажмите «Вставить» (или Ctrl+V) и отправьте сообщение вручную.</i>`;
+        const modalHtml = `Текст вашего чека со всеми товарами и адресом <b>успешно скопирован в буфер обмена</b>!<br><br>` +
+                          `Нажмите кнопку ниже, чтобы открыть чат с нашей группой ВКонтакте:<br><br>` +
+                          `<a href="` + vkUrl + `" target="_blank" style="display: inline-block; background: #ff0055; color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 10px rgba(255,0,85,0.4);">👉 ОТКРЫТЬ ЧАТ ГРУППЫ В ВК ➔</a><br><br>` +
+                          `<b>Что делать в чате:</b><br>` +
+                          `Просто зажмите пальцем поле ввода (или нажмите <b>Ctrl+V</b> на ПК), выберите <b>«Вставить»</b> и отправьте сообщение нам. Все товары уже там!`;
 
         document.getElementById('mTitle').innerText = '🛒 ЗАКАЗ СФОРМИРОВАН!';
         document.getElementById('mBody').innerHTML = modalHtml;
