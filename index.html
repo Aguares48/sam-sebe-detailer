@@ -60,6 +60,32 @@
     <div class="main-layout">
         <div class="products-grid">
             <!-- Товар 1 -->
+            <div class="product-card" style="background-image: url('grafe.jpg');">
+                <div class="card-inner-content">
+                    <div>
+                        <div class="card-header-row"><div class="product-title">Графеновая керамика 12H+</div><div class="product-price-tag">1600 руб.</div></div>
+                        <div class="product-desc">Премиальное защитное покрытие на основе графена. Защита кузова до 3 лет, зеркальный блеск и мощнейший гидрофоб.</div>
+                    </div>
+                    <div class="buttons-group">
+                        <button class="btn-instruction" onclick="openModal('Графеновая керамика 12H+','ИНСТРУКЦИЯ:\n1. Нанесите 5-6 капель на салфетку с аппликатором.\n2. Обрабатывайте кузов по элементам (50х50 см) крест-накрест.\n3. Через 1-2 минуты располируйте чистой микрофиброй.')">Инструкция ➔</button>
+                        <label class="add-to-kit"><input type="checkbox" class="prod-check" data-name="Графеновая керамика 12H+" data-price="1600" onchange="updateCartAndGifts()"><span>В комплект</span></label>
+                    </div>
+                </div>
+            </div>
+            <!-- Товар 2 -->
+            <div class="product-card" style="background-image: url('shina.jpg');">
+                <div class="card-inner-content">
+                    <div>
+                        <div class="card-header-row"><div class="product-title">Чернитель шин Tire Paste</div><div class="product-price-tag">200 руб.</div></div>
+                        <div class="product-desc">Густая паста для резины. Возвращает покрышкам глубокий заводской черный цвет и создает барьер от грязи и соли.</div>
+                    </div>
+                    <div class="buttons-group">
+                        <button class="btn-instruction" onclick="openModal('Чернитель шин Tire Paste','ИНСТРУКЦИЯ:\n1. Нанесите небольшое количество пасты на губку-аппликатор.\n2. Равномерно распределите по чистой боковине шины.\n3. Дайте подсохнуть 5 минут.')">Инструкция ➔</button>
+                        <label class="add-to-kit"><input type="checkbox" class="prod-check" data-name="Чернитель шин Tire Paste" data-price="200" onchange="updateCartAndGifts()"><span>В комплект</span></label>
+                    </div>
+                </div>
+            </div>
+            <!-- Товар 3 -->
             <div class="product-card" style="background-image: url('veteran.jpg');">
                 <div class="card-inner-content">
                     <div>
@@ -72,7 +98,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Товар 2 -->
+            <!-- Товар 4 -->
             <div class="product-card" style="background-image: url('fary.jpg');">
                 <div class="card-inner-content">
                     <div>
@@ -85,7 +111,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Товар 3 -->
+            <!-- Товар 5 -->
             <div class="product-card" style="background-image: url('remont.jpg');">
                 <div class="card-inner-content">
                     <div>
@@ -98,11 +124,11 @@
                     </div>
                 </div>
             </div>
-            <!-- Товар 4 -->
+            <!-- Товар 6 -->
             <div class="product-card" style="background-image: url('plastik.jpg');">
                 <div class="card-inner-content">
                     <div>
-                        <div class="card-header-row"><div class="product-title">Восстановитель plasticа</div><div class="product-price-tag">600 руб.</div></div>
+                        <div class="card-header-row"><div class="product-title">Восстановитель пластика</div><div class="product-price-tag">600 руб.</div></div>
                         <div class="product-desc">Глубоко проникающий состав для реставрации структуры пластика. Возвращает насыщенный цвет и матовый блеск.</div>
                     </div>
                     <div class="buttons-group">
@@ -111,7 +137,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Товар 5 -->
+            <!-- Товар 7 -->
             <div class="product-card" style="background-image: url('krem.jpg');">
                 <div class="card-inner-content">
                     <div>
@@ -124,7 +150,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Товар 6 -->
+            <!-- Товар 8 -->
             <div class="product-card" style="background-image: url('fibra9.jpg');">
                 <div class="card-inner-content">
                     <div>
@@ -137,7 +163,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Товар 7 -->
+            <!-- Товар 9 -->
             <div class="product-card" style="background-image: url('towel.jpg');">
                 <div class="card-inner-content">
                     <div>
@@ -148,9 +174,6 @@
                         <button class="btn-instruction" onclick="openModal('Twisted Loop полотенце','ИНСТРУКЦИЯ:\nРазложите полотенце на кузов и плавно потяните за края без сильного нажима. После использования просушите в тени.')">Инструкция ➔</button>
                         <label class="add-to-kit"><input type="checkbox" class="prod-check" data-name="Полотенце Twisted Loop" data-price="300" onchange="updateCartAndGifts()"><span>В комплект</span></label>
                     </div>
-                </div>
-            </div>
-        </div>
         <!-- Боковая панель бонусов -->
         <div class="gifts-sidebar">
             <h2>🎁 Бонусы комплекта</h2>
@@ -212,27 +235,27 @@
         message += `📍 АДРЕС: ${address}\n`;
         message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖`;
 
-        // 🚀 Кодируем весь текст заказа для безопасной передачи в ссылку
+        // Безопасно кодируем текст для передачи в URL
         let encodedText = encodeURIComponent(message);
 
-        // ⚠️ ЗАМЕНИ СЛОВО НИЖЕ НА РЕАЛЬНОЕ ИМЯ СВОЕЙ ГРУППЫ (НАПРИМЕР: sam_sebe_detailer)
+        // ⚠️ ЗАМЕНИ НА НАЗВАНИЕ СВОЕЙ ГРУППЫ (НАПРИМЕР: sam_sebe_detailer)
         let vkGroupName = "ВСТАВЬ_СЮДА_ИМЯ_ГРУППЫ"; 
         
-        // Формируем прямую ссылку, которая сама открывает чат и вставляет текст
-        let vkLink = `https://vk.me{vkGroupName}?ref=text&ref_source=${encodedText}`;
+        // Железобетонная сборка ссылки без фигурных скобок
+        let vkLink = "https://vk.me" + vkGroupName + "?ref=text&ref_source=" + encodedText;
 
-        // Дополнительно копируем в буфер обмена для подстраховки
+        // Копируем текст в буфер обмена для подстраховки
         navigator.clipboard.writeText(message).catch(() => {});
 
-        // Вызываем обновленное окно без упоминания имен
+        // Вызываем модальное окно с кнопкой-ссылкой
         showOrderModal(vkLink);
     }
 
     function showOrderModal(vkLink) {
         const modalHtml = `Ваш комплект успешно сформирован, а копия чека сохранена!<br><br>` +
                           `Нажмите на кнопку ниже. У вас откроется чат, и <b>весь текст заказа уже будет автоматически вставлен в поле ввода</b> — вам останется только нажать кнопку отправки сообщения в ВК!<br><br>` +
-                          `<a href="${vkLink}" target="_blank" style="display: inline-block; text-align: center; background: #ff0055; color: #fff; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: bold; font-size: 15px; box-shadow: 0 4px 10px rgba(255,0,85,0.4);">👉 ОТКРЫТЬ ЧАТ И ОТПРАВИТЬ ЗАКАЗ ➔</a><br><br>` +
-                          `<i>Если вдруг ваш браузер заблокировал автозаполнение текста, просто зажмите поле ввода в чате, выберите <b>«Вставить» (или нажмите Ctrl+V)</b> и отправьте текст. Наш менеджер сразу выйдет на связь!</i>`;
+                          `<a href="` + vkLink + `" target="_blank" style="display: inline-block; text-align: center; background: #ff0055; color: #fff; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: bold; font-size: 15px; box-shadow: 0 4px 10px rgba(255,0,85,0.4);">👉 ОТКРЫТЬ ЧАТ И ОТПРАВИТЬ ЗАКАЗ ➔</a><br><br>` +
+                          `<i>Если вдруг ваш браузер или приложение заблокировали автозаполнение текста, просто зажмите поле ввода в чате, выберите <b>«Вставить» (или нажмите Ctrl+V)</b> и отправьте текст. Мы сразу выйдем на связь!</i>`;
 
         document.getElementById('mTitle').innerText = '🛒 ЗАКАЗ СФОРМИРОВАН!';
         document.getElementById('mBody').innerHTML = modalHtml;
