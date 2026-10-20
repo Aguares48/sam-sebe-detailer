@@ -259,4 +259,20 @@
     }
 </script>
 </body>
+<script>
+    function showOrderModal() {
+        // Официальная прямая ссылка в чат группы по буквенному имени
+        const vkDirectUrl = "https://vk.me";
+
+        const modalHtml = `Текст вашего заказа со всеми товарами и адресом <b>успешно скопирован в буфер обмена</b>!<br><br>` +
+                          `Нажмите кнопку ниже, чтобы мгновенно открыть чат с нами в ВК:<br><br>` +
+                          `<a href="` + vkDirectUrl + `" target="_blank" style="display: inline-block; background: #ff0055; color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 10px rgba(255,0,85,0.4);">👉 ОТКРЫТЬ ЧАТ И ОТПРАВИТЬ ЗАКАЗ ➔</a><br><br>` +
+                          `<b>Что сделать в чате:</b><br>` +
+                          `Просто зажмите поле ввода (или нажмите <b>Ctrl+V</b> на ПК), выберите <b>«Вставить»</b> и отправьте чек. Александр Сергеевич сразу ответит и проконсультирует вас по нанесению!`;
+
+        document.getElementById('mTitle').innerText = '🛒 ЗАКАЗ СФОРМИРОВАН!';
+        document.getElementById('mBody').innerHTML = modalHtml;
+        document.getElementById('infoModal').style.display = 'flex';
+    }
+</script>
 </html>
