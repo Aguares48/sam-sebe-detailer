@@ -42,11 +42,6 @@
         .address-input:focus {outline:none;border-color:#00ffcc;box-shadow:0 0 5px rgba(0,255,204,.5)}
         .order-actions {display:flex;gap:10px;position:relative}
         .btn-main-submit {background:#00ffcc;color:#0a0f1e;border:none;padding:12px 24px;border-radius:30px;font-size:15px;font-weight:bold;cursor:pointer;box-shadow:0 4px 10px rgba(0,255,204,.3)}
-        .messenger-menu {display:none;position:absolute;bottom:55px;right:0;background:#1e1e2f;border:2px solid #00ffcc;border-radius:8px;overflow:hidden;box-shadow:0 -5px 15px rgba(0,0,0,.5);width:180px;z-index:1000}
-        .messenger-menu.show {display:block}
-        .messenger-item {display:flex;align-items:center;gap:10px;padding:12px 15px;color:#fff;text-decoration:none;font-size:14px;font-weight:600;cursor:pointer}
-        .messenger-item:hover {background:rgba(0,255,204,.1)}
-        .msg-wa {border-bottom:1px solid rgba(255,255,255,.05)}
         .site-info-footer{text-align:center;margin-top:40px;font-size:13px;color:#888888;border-top:1px solid rgba(255,255,255,.05);padding-top:20px;width:100%}
         .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:10000;justify-content:center;align-items:center;padding:20px}
         .modal-content{background:#1e1e2f;border:2px solid #ff0055;box-shadow:0 0 20px rgba(255,0,85,.5);border-radius:12px;max-width:500px;width:100%;padding:25px;position:relative}
@@ -120,7 +115,7 @@
             <div class="product-card" style="background-image: url('krem.jpg');">
                 <div class="card-inner-content">
                     <div>
-                        <div class="card-header-row"><div class="product-title">Крем-кондиционер Mizilife</div><div class="product-price-tag">400 руб.</div></div>
+                        <div class="card-header-row"><div class="product-title">К磨-кондиционер Mizilife</div><div class="product-price-tag">400 руб.</div></div>
                         <div class="product-desc">Деликатный крем для очистки и питания кожи. Препятствует старению обивки, сохраняя её первозданную мягкость.</div>
                     </div>
                     <div class="buttons-group">
@@ -169,7 +164,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Боковая панель с подарками -->
         <div class="gifts-sidebar">
             <h2>🎁 ВАШИ ПОДАРКИ</h2>
@@ -179,21 +173,17 @@
     </div>
     <footer class="site-info-footer"><p>© 2026 Сам Себе Детейлер. Все права защищены.</p></footer>
 </div>
-<!-- Плавающая корзина, адрес и выбор мессенджера -->
+
+<!-- Плавающая корзина и адрес -->
 <div class="sticky-cart">
     <div class="cart-content">
         <div class="cart-stats">Выбрано: <span id="cart-count">0</span> | Сумма: <span id="cart-total">0</span> руб.</div>
         <div class="address-container"><input type="text" id="client-address" class="address-input" placeholder="Введите адрес доставки..."></div>
         <div class="order-actions">
-            <button class="btn-main-submit" onclick="toggleMessengerMenu(event)">Оформить заказ ➔</button>
-            <div class="messenger-menu" id="msgMenu">
-                <div class="messenger-item msg-wa" onclick="sendOrder('wa')">🟢 WhatsApp</div>
-                <div class="messenger-item msg-max" onclick="sendOrder('max')">🔵 В мессенджер MAX</div>
-            </div>
+            <button class="btn-main-submit" onclick="sendOrderToMax()">Оформить заказ в MAX ➔</button>
         </div>
     </div>
 </div>
-
 <!-- Окно для инструкций -->
 <div class="modal" id="infoModal">
     <div class="modal-content">
@@ -204,9 +194,6 @@
 </div>
 
 <script>
-    // ⚙️ ЗАПОЛНЕННЫЕ ДАННЫЕ ВЛАДЕЛЬЦА:
-    const WHATSAPP_PHONE = "79092245434"; // Твой личный номер телефона
-
     function updateCartAndGifts() {
         const checkboxes = document.querySelectorAll('.prod-check');
         let total = 0, count = 0;
@@ -219,10 +206,7 @@
         else { deliveryGift.classList.remove('unlocked'); }
     }
 
-    function toggleMessengerMenu(event) { event.stopPropagation(); document.getElementById('msgMenu').classList.toggle('show'); }
-    document.addEventListener('click', function() { document.getElementById('msgMenu').classList.remove('show'); });
-
-    function sendOrder(type) {
+    function sendOrderToMax() {
         const checkboxes = document.querySelectorAll('.prod-check');
         let selectedProducts = [], total = 0;
         checkboxes.forEach(box => { if (box.checked) { selectedProducts.push(`• ${box.dataset.name} (${box.dataset.price} руб.)`); total += parseInt(box.dataset.price); } });
@@ -231,22 +215,21 @@
         const address = document.getElementById('client-address').value.trim();
         if (!address) { alert('Пожалуйста, введите адрес доставки!'); return; }
 
-        let message = `🔥 ЗАКАЗ С САЙТА «САМ СЕБЕ ДЕТЕЙЛЕР» 🔥\n\n📦 Состав комплекта:\n${selectedProducts.join('\n')}\n\n💵 Итого: ${total} руб.\n`;
-        message += total >= 3500 ? `🚚 Доставка: Бесплатная (бонус от 3500р включен!)\n` : `🚚 Доставка: Платная\n`;
-        message += `📍 Адрес: ${address}`;
+        // Сочный текст заказа со смайликами и разделителями
+        let message = `🔥 НОВЫЙ ЗАКАЗ «САМ СЕБЕ ДЕТЕЙЛЕР» 🔥\n`;
+        message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n`;
+        message += `📦 СОСТАВ КОМПЛЕКТА:\n${selectedProducts.join('\n')}\n\n`;
+        message += `💰 ИТОГО: ${total} руб.\n`;
+        message += total >= 3500 ? `🚚 ДОСТАВКА: Бесплатная (бонус от 3500р включен!)\n` : `🚚 ДОСТАВКА: Платная\n`;
+        message += `📍 АДРЕС: ${address}\n`;
+        message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖`;
 
-        if (type === 'wa') { 
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://whatsapp.com{WHATSAPP_PHONE}&text=${encodedMessage}`, '_blank'); 
-        } 
-        else if (type === 'max') { 
-            // Железобетонный метод для MAX: копирование + точная инструкция с твоим номером
-            navigator.clipboard.writeText(message).then(() => {
-                alert('Текст заказа скопирован в буфер обмена!\n\nОткройте мессенджер MAX и отправьте это сообщение (Ctrl + V или вставить) Александру Сергеевичу на номер: +7 (909) 224-54-34');
-            }).catch(err => {
-                alert('Не удалось скопировать автоматически. Скопируйте этот текст и отправьте Александру Сергеевичу на номер +7 (909) 224-54-34:\n\n' + message);
-            });
-        }
+        // Копируем заказ в буфер обмена и мгновенно перенаправляем в твою созданную группу MAX
+        navigator.clipboard.writeText(message).then(() => {
+            window.open("https://max.ru", "_blank");
+        }).catch(err => {
+            alert('Ой, не удалось скопировать заказ автоматически. Пожалуйста, попробуйте еще раз.');
+        });
     }
 
     function openModal(title, body) { document.getElementById('mTitle').innerText = title; document.getElementById('mBody').innerText = body; document.getElementById('infoModal').style.display = 'flex'; }
