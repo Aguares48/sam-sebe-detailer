@@ -180,7 +180,7 @@
         <div class="cart-stats">Выбрано: <span id="cart-count">0</span> | Сумма: <span id="cart-total">0</span> руб.</div>
         <div class="address-container"><input type="text" id="client-address" class="address-input" placeholder="Введите адрес доставки..."></div>
         <div class="order-actions">
-            <button class="btn-main-submit" onclick="sendOrderToVk()">Оформить заказ в VK ➔</button>
+            <button class="btn-main-submit" onclick="sendOrder()">Оформить заказ ➔</button>
         </div>
     </div>
 </div>
@@ -206,7 +206,7 @@
         else { deliveryGift.classList.remove('unlocked'); }
     }
 
-    function sendOrderToVk() {
+    function sendOrder() {
         const checkboxes = document.querySelectorAll('.prod-check');
         let selectedProducts = [], total = 0;
         checkboxes.forEach(box => { if (box.checked) { selectedProducts.push(`• ${box.dataset.name} (${box.dataset.price} руб.)`); total += parseInt(box.dataset.price); } });
@@ -215,7 +215,7 @@
         const address = document.getElementById('client-address').value.trim();
         if (!address) { alert('Пожалуйста, введите адрес доставки!'); return; }
 
-        // Сочный текст заказа со смайликами и разделителями
+        // Формируем красивый и сочный текст заказа со смайликами и разделителями
         let message = `🔥 НОВЫЙ ЗАКАЗ «САМ СЕБЕ ДЕТЕЙЛЕР» 🔥\n`;
         message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n`;
         message += `📦 СОСТАВ КОМПЛЕКТА:\n${selectedProducts.join('\n')}\n\n`;
@@ -224,16 +224,29 @@
         message += `📍 АДРЕС: ${address}\n`;
         message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖`;
 
-        // Копируем заказ в буфер обмена и МГНОВЕННО перенаправляем в диалог по официальной прямой ссылке vk.me
+        // Копируем текст и открываем красивое модальное окно на сайте, которое сработает везде
         navigator.clipboard.writeText(message).then(() => {
-            window.open("https://vk.me", "_blank");
+            showOrderInstruction();
         }).catch(err => {
-            // Запасной вариант на случай блокировки буфера обмена настройками браузера
-            window.open("https://vk.me", "_blank");
+            // Запасной вариант, если буфер обмена заблокирован
+            showOrderInstruction();
         });
     }
 
-    function openModal(title, body) { document.getElementById('mTitle').innerText = title; document.getElementById('mBody').innerText = body; document.getElementById('infoModal').style.display = 'flex'; }
+    function showOrderInstruction() {
+        const instructionText = `Текст вашего заказа успешно скопирован в буфер обмена!\n\n` +
+                                `Чтобы отправить его нам, просто перейдите в нашу группу ВКонтакте и вставьте сообщение в диалог:\n\n` +
+                                `👉 **://vk.com** 👈\n\n` +
+                                `*(Просто нажмите Ctrl+V в чате группы или зажмите пальцем поле ввода и выберите «Вставить»)*`;
+        
+        openModal('🛒 ЗАКАЗ СКОПИРОВАН!', instructionText);
+    }
+
+    function openModal(title, body) { 
+        document.getElementById('mTitle').innerText = title; 
+        document.getElementById('mBody').innerText = body; 
+        document.getElementById('infoModal').style.display = 'flex'; 
+    }
     function closeModal() { document.getElementById('infoModal').style.display = 'none'; }
 </script>
 </body>
