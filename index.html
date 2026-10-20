@@ -223,7 +223,7 @@
         message += `📍 АДРЕС: ${address}\n`;
         message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖`;
 
-        // Копируем чек в буфер обмена для надежности
+        // Копируем чек в буфер обмена
         navigator.clipboard.writeText(message).then(() => {
             showOrderModal();
         }).catch(err => {
@@ -232,18 +232,20 @@
     }
 
     function showOrderModal() {
-        // Короткая прямая ссылка на диалог с сообществом без передачи текста в URL
-        const vkUrl = "https://vk.me";
-
         const modalHtml = `Текст вашего чека со всеми товарами и адресом <b>успешно скопирован в буфер обмена</b>!<br><br>` +
-                          `Нажмите кнопку ниже, чтобы открыть чат с нашей группой ВКонтакте:<br><br>` +
-                          `<a href="` + vkUrl + `" target="_blank" style="display: inline-block; background: #ff0055; color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 10px rgba(255,0,85,0.4);">👉 ОТКРЫТЬ ЧАТ ГРУППЫ В ВК ➔</a><br><br>` +
+                          `Нажмите кнопку ниже, чтобы перейти в диалог с нашей группой ВКонтакте:<br><br>` +
+                          `<button onclick="goToVK()" style="display: inline-block; background: #ff0055; color: #fff; border: none; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 15px; cursor: pointer; box-shadow: 0 4px 10px rgba(255,0,85,0.4);">👉 ОТКРЫТЬ ЧАТ ГРУППЫ В ВК ➔</button><br><br>` +
                           `<b>Что делать в чате:</b><br>` +
-                          `Просто зажмите пальцем поле ввода (или нажмите <b>Ctrl+V</b> на ПК), выберите <b>«Вставить»</b> и отправьте сообщение нам. Все товары уже там!`;
+                          `Просто зажмите пальцем поле ввода сообщения (или нажмите <b>Ctrl+V</b> на компьютере), выберите <b>«Вставить»</b> и отправьте чек нам. Все выбранные товары уже сохранены!`;
 
         document.getElementById('mTitle').innerText = '🛒 ЗАКАЗ СФОРМИРОВАН!';
         document.getElementById('mBody').innerHTML = modalHtml;
         document.getElementById('infoModal').style.display = 'flex';
+    }
+
+    // Легитимный переход по клику на кнопку, который одобряют все браузеры
+    function goToVK() {
+        window.open("https://vk.me", "_blank");
     }
 
     function openModal(title, body) { 
