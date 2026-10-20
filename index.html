@@ -93,7 +93,7 @@
                         <div class="product-desc">Универсальный набор для устранения прожогов, порезов, задиров и потертостей на сиденьях из кожи.</div>
                     </div>
                     <div class="buttons-group">
-                        <button class="btn-instruction" onclick="openModal('Ремкомплект 7-в-1','ИНСТРУКЦИЯ:\n1. Обезжирьте участок.\n2. Подберите цвет краски, нанесите шпателем.\n3. Приложите текстурную бумагу.')">Инструксья ➔</button>
+                        <button class="btn-instruction" onclick="openModal('Ремкомплект 7-в-1','ИНСТРУКЦИЯ:\n1. Обезжирьте участок.\n2. Подберите цвет краски, нанесите шпателем.\n3. Приложите текстурную бумагу.')">Инструкция ➔</button>
                         <label class="add-to-kit"><input type="checkbox" class="prod-check" data-name="Ремкомплект кожи 7-в-1" data-price="1000" onchange="updateCartAndGifts()"><span>В комплект</span></label>
                     </div>
                 </div>
@@ -214,7 +214,7 @@
         const address = document.getElementById('client-address').value.trim();
         if (!address) { alert('Пожалуйста, введите адрес доставки!'); return; }
 
-        // Формируем красивый текст чека
+        // Чек заказа
         let message = `🔥 НОВЫЙ ЗАКАЗ «САМ СЕБЕ ДЕТЕЙЛЕР» 🔥\n`;
         message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n`;
         message += `📦 СОСТАВ КОМПЛЕКТА:\n${selectedProducts.join('\n')}\n\n`;
@@ -223,7 +223,7 @@
         message += `📍 АДРЕС: ${address}\n`;
         message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖`;
 
-        // Копируем чек в буфер обмена для подстраховки
+        // Копируем чек в буфер обмена для надежности
         navigator.clipboard.writeText(message).then(() => {
             showOrderModal(message);
         }).catch(err => {
@@ -232,16 +232,13 @@
     }
 
     function showOrderModal(message) {
-        // Кодируем готовый чек, чтобы ссылка правильно передала спецсимволы и переносы строк
+        // Жесткая классическая склейка строки ссылки без опасных кавычек
         const encodedMsg = encodeURIComponent(message);
+        const vkUrl = "https://vk.com" + encodedMsg;
 
-        // Формируем прямую ссылку на сообщения твоего сообщества со знаком МИНУС
-        const vkUrl = `https://vk.com{encodedMsg}`;
-
-        // Наполняем модальное окно текстом и кнопкой-ссылкой с автоподстановкой текста
         const modalHtml = `Ваш чек успешно сформирован и скопирован в буфер обмена!<br><br>` +
                           `Нажмите кнопку ниже, чтобы отправить его в нашу группу ВКонтакте. Текст заказа подставится <b>автоматически</b> в поле ввода:<br><br>` +
-                          `<a href="${vkUrl}" target="_blank" style="display: inline-block; background: #ff0055; color: #fff; text-decoration: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 10px rgba(255,0,85,0.4);">👉 ОТПРАВИТЬ ЗАКАЗ В ВК ➔</a><br><br>` +
+                          `<a href="` + vkUrl + `" target="_blank" style="display: inline-block; background: #ff0055; color: #fff; text-decoration: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 10px rgba(255,0,85,0.4);">👉 ОТПРАВИТЬ ЗАКАЗ В ВК ➔</a><br><br>` +
                           `<i>* Если автоматика соцсети не сработала, просто откройте чат, нажмите «Вставить» (или Ctrl+V) и отправьте сообщение вручную.</i>`;
 
         document.getElementById('mTitle').innerText = '🛒 ЗАКАЗ СФОРМИРОВАН!';
