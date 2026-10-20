@@ -208,29 +208,15 @@
 
     function sendOrderToVk() {
         const checkboxes = document.querySelectorAll('.prod-check');
-        let selectedProducts = [], total = 0;
-        checkboxes.forEach(box => { if (box.checked) { selectedProducts.push(`• ${box.dataset.name} (${box.dataset.price} руб.)`); total += parseInt(box.dataset.price); } });
+        let selectedProducts = [];
+        checkboxes.forEach(box => { if (box.checked) { selectedProducts.push(box.dataset.name); } });
 
         if (selectedProducts.length === 0) { alert('Пожалуйста, добавьте в комплект хотя бы одно средство!'); return; }
         const address = document.getElementById('client-address').value.trim();
         if (!address) { alert('Пожалуйста, введите адрес доставки!'); return; }
 
-        // Сочный текст заказа со смайликами и разделителями
-        let message = `🔥 НОВЫЙ ЗАКАЗ «САМ СЕБЕ ДЕТЕЙЛЕР» 🔥\n`;
-        message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n`;
-        message += `📦 СОСТАВ КОМПЛЕКТА:\n${selectedProducts.join('\n')}\n\n`;
-        message += `💰 ИТОГО: ${total} руб.\n`;
-        message += total >= 3500 ? `🚚 ДОСТАВКА: Бесплатная (бонус от 3500р включен!)\n` : `🚚 ДОСТАВКА: Платная\n`;
-        message += `📍 АДРЕС: ${address}\n`;
-        message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖`;
-
-        // Копируем заказ в буфер обмена и МГНОВЕННО перенаправляем в диалог по официальной прямой ссылке vk.me
-        navigator.clipboard.writeText(message).then(() => {
-            window.open("https://vk.me", "_blank");
-        }).catch(err => {
-            // Запасной вариант на случай блокировки буфера обмена настройками браузера
-            window.open("https://vk.me", "_blank");
-        });
+        // Мгновенный и чистый переход по официальной ссылке отправки сообщений, без задержек буфера обмена
+        window.open("https://vk.com", "_blank");
     }
 
     function openModal(title, body) { document.getElementById('mTitle').innerText = title; document.getElementById('mBody').innerText = body; document.getElementById('infoModal').style.display = 'flex'; }
