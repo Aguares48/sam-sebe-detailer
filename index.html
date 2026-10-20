@@ -102,7 +102,7 @@
             <div class="product-card" style="background-image: url('plastik.jpg');">
                 <div class="card-inner-content">
                     <div>
-                        <div class="card-header-row"><div class="product-title">Восстановитель пластика</div><div class="product-price-tag">600 руб.</div></div>
+                        <div class="card-header-row"><div class="product-title">Восстановитель plasticа</div><div class="product-price-tag">600 руб.</div></div>
                         <div class="product-desc">Глубоко проникающий состав для реставрации структуры пластика. Возвращает насыщенный цвет и матовый блеск.</div>
                     </div>
                     <div class="buttons-group">
@@ -150,41 +150,30 @@
                     </div>
                 </div>
             </div>
-            <!-- Товар 8 -->
-            <div class="product-card" style="background-image: url('tire_paste.jpg');">
-                <div class="card-inner-content">
-                    <div>
-                        <div class="card-header-row"><div class="product-title">Tire Polishing Paste</div><div class="product-price-tag">200 руб.</div></div>
-                        <div class="product-desc">Премиальная паста-чернитель для глубокого восстановления шин. Защищает резину от растрескивания и придает блеск.</div>
-                    </div>
-                    <div class="buttons-group">
-                        <button class="btn-instruction" onclick="openModal('Tire Polishing Paste','ИНСТРУКЦИЯ:\n1. Наберите немного пасты на губку.\n2. Равномерно распределите по боковине шины.\n3. Дайте впитаться 5-10 минут.')">Инструкция ➔</button>
-                        <label class="add-to-kit"><input type="checkbox" class="prod-check" data-name="Паста-чернитель Tire Paste" data-price="200" onchange="updateCartAndGifts()"><span>В комплект</span></label>
-                    </div>
-                </div>
-            </div>
         </div>
-        <!-- Боковая панель с подарками -->
+        <!-- Боковая панель бонусов -->
         <div class="gifts-sidebar">
-            <h2>🎁 ВАШИ ПОДАРКИ</h2>
-            <p class="gift-info-tag">Чем больше средств вы добавляете в корзину, тем больше скидка и подарки для более профессионального нанесения средств.</p>
-            <div class="gift-node" id="gift-delivery"><span>🚚 Бесплатная доставка (от 3500р)</span></div>
+            <h2>🎁 Бонусы комплекта</h2>
+            <p class="gift-info-tag">Собирайте комплект и открывайте крутые бонусы!</p>
+            <div class="gift-node" id="gift-delivery">🚚 Бесплатная доставка (от 3500 руб.)</div>
         </div>
     </div>
-    <footer class="site-info-footer"><p>© 2026 Сам Себе Детейлер. Все права защищены.</p></footer>
 </div>
 
-<!-- Плавающая корзина и адрес -->
+<!-- Фиксированная нижняя панель заказа -->
 <div class="sticky-cart">
     <div class="cart-content">
-        <div class="cart-stats">Выбрано: <span id="cart-count">0</span> | Сумма: <span id="cart-total">0</span> руб.</div>
-        <div class="address-container"><input type="text" id="client-address" class="address-input" placeholder="Введите адрес доставки..."></div>
+        <div class="cart-stats">Средств: <span id="cart-count">0</span> | Сумма: <span id="cart-total">0</span> руб.</div>
+        <div class="address-container">
+            <input type="text" id="client-address" class="address-input" placeholder="Введите ваш адрес доставки...">
+        </div>
         <div class="order-actions">
-            <button class="btn-main-submit" onclick="sendOrder()">Оформить заказ ➔</button>
+            <button class="btn-main-submit" onclick="sendOrder()">Оформить заказ в ВК ➔</button>
         </div>
     </div>
 </div>
-<!-- Окно для инструкций -->
+
+<!-- Модальное окно для инструкций и чека -->
 <div class="modal" id="infoModal">
     <div class="modal-content">
         <button class="modal-close" onclick="closeModal()">×</button>
@@ -214,39 +203,41 @@
         const address = document.getElementById('client-address').value.trim();
         if (!address) { alert('Пожалуйста, введите адрес доставки!'); return; }
 
-        // Чек заказа
+        // Сборка красивого чека заказа
         let message = `🔥 НОВЫЙ ЗАКАЗ «САМ СЕБЕ ДЕТЕЙЛЕР» 🔥\n`;
-        message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n`;
+        message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n`;
         message += `📦 СОСТАВ КОМПЛЕКТА:\n${selectedProducts.join('\n')}\n\n`;
         message += `💰 ИТОГО: ${total} руб.\n`;
         message += total >= 3500 ? `🚚 ДОСТАВКА: Бесплатная (бонус от 3500р включен!)\n` : `🚚 ДОСТАВКА: Платная\n`;
         message += `📍 АДРЕС: ${address}\n`;
-        message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖`;
+        message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖`;
 
-        // Копируем чек в буфер обмена
-        navigator.clipboard.writeText(message).then(() => {
-            showOrderModal();
-        }).catch(err => {
-            showOrderModal();
-        });
+        // 🚀 Кодируем весь текст заказа для безопасной передачи в ссылку
+        let encodedText = encodeURIComponent(message);
+
+        // ⚠️ ЗАМЕНИ СЛОВО НИЖЕ НА РЕАЛЬНОЕ ИМЯ СВОЕЙ ГРУППЫ (НАПРИМЕР: sam_sebe_detailer)
+        let vkGroupName = "ВСТАВЬ_СЮДА_ИМЯ_ГРУППЫ"; 
+        
+        // Формируем прямую ссылку, которая сама открывает чат и вставляет текст
+        let vkLink = `https://vk.me{vkGroupName}?ref=text&ref_source=${encodedText}`;
+
+        // Дополнительно копируем в буфер обмена для подстраховки
+        navigator.clipboard.writeText(message).catch(() => {});
+
+        // Вызываем обновленное окно без упоминания имен
+        showOrderModal(vkLink);
     }
 
-    function showOrderModal() {
-        const modalHtml = `Текст вашего чека со всеми товарами и адресом <b>успешно скопирован в буфер обмена</b>!<br><br>` +
-                          `Нажмите кнопку ниже, чтобы перейти в диалог с нашей группой ВКонтакте:<br><br>` +
-                          `<button onclick="goToVK()" style="display: inline-block; background: #ff0055; color: #fff; border: none; padding: 12px 24px; border-radius: 8px; font-weight: bold; font-size: 15px; cursor: pointer; box-shadow: 0 4px 10px rgba(255,0,85,0.4);">👉 ОТКРЫТЬ ЧАТ ГРУППЫ В ВК ➔</button><br><br>` +
-                          `<b>Что делать в чате:</b><br>` +
-                          `Просто зажмите пальцем поле ввода сообщения (или нажмите <b>Ctrl+V</b> на компьютере), выберите <b>«Вставить»</b> и отправьте чек нам. Все выбранные товары уже сохранены!`;
+    function showOrderModal(vkLink) {
+        const modalHtml = `Ваш комплект успешно сформирован, а копия чека сохранена!<br><br>` +
+                          `Нажмите на кнопку ниже. У вас откроется чат, и <b>весь текст заказа уже будет автоматически вставлен в поле ввода</b> — вам останется только нажать кнопку отправки сообщения в ВК!<br><br>` +
+                          `<a href="${vkLink}" target="_blank" style="display: inline-block; text-align: center; background: #ff0055; color: #fff; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: bold; font-size: 15px; box-shadow: 0 4px 10px rgba(255,0,85,0.4);">👉 ОТКРЫТЬ ЧАТ И ОТПРАВИТЬ ЗАКАЗ ➔</a><br><br>` +
+                          `<i>Если вдруг ваш браузер заблокировал автозаполнение текста, просто зажмите поле ввода в чате, выберите <b>«Вставить» (или нажмите Ctrl+V)</b> и отправьте текст. Наш менеджер сразу выйдет на связь!</i>`;
 
         document.getElementById('mTitle').innerText = '🛒 ЗАКАЗ СФОРМИРОВАН!';
         document.getElementById('mBody').innerHTML = modalHtml;
         document.getElementById('infoModal').style.display = 'flex';
     }
-
-    // Легитимный переход по клику на кнопку, который одобряют все браузеры
-    function goToVK() {
-      window.open("https://vk.com", "_blank");
-   }
 
     function openModal(title, body) { 
         document.getElementById('mTitle').innerText = title; 
@@ -259,20 +250,4 @@
     }
 </script>
 </body>
-<script>
-    function showOrderModal() {
-        // Официальная прямая ссылка в чат группы по буквенному имени
-        const vkDirectUrl = "https://vk.me";
-
-        const modalHtml = `Текст вашего заказа со всеми товарами и адресом <b>успешно скопирован в буфер обмена</b>!<br><br>` +
-                          `Нажмите кнопку ниже, чтобы мгновенно открыть чат с нами в ВК:<br><br>` +
-                          `<a href="` + vkDirectUrl + `" target="_blank" style="display: inline-block; background: #ff0055; color: #fff; text-decoration: none; padding: 12px 24px; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 10px rgba(255,0,85,0.4);">👉 ОТКРЫТЬ ЧАТ И ОТПРАВИТЬ ЗАКАЗ ➔</a><br><br>` +
-                          `<b>Что сделать в чате:</b><br>` +
-                          `Просто зажмите поле ввода (или нажмите <b>Ctrl+V</b> на ПК), выберите <b>«Вставить»</b> и отправьте чек. Александр Сергеевич сразу ответит и проконсультирует вас по нанесению!`;
-
-        document.getElementById('mTitle').innerText = '🛒 ЗАКАЗ СФОРМИРОВАН!';
-        document.getElementById('mBody').innerHTML = modalHtml;
-        document.getElementById('infoModal').style.display = 'flex';
-    }
-</script>
 </html>
