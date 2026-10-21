@@ -145,7 +145,7 @@
                         <div class="product-desc">Деликатный крем для очистки и питания кожи. Препятствует старению обивки, сохраняя её первозданную мягкость.</div>
                     </div>
                     <div class="buttons-group">
-                        <button class="btn-instruction" onclick="openModal('Крем Mizilife','ИНСТРУКЦИЯ:\n1. Нанесите крем на спонж.\n2. Ветрите в кожу круговыми движениями.\n3. Оставьте на 10 минут, протрите салфеткой.')">Инструкция ➔</button>
+                        <button class="btn-instruction" onclick="openModal('Крем Mizilife','ИНСТРУК> </button>\n1. Нанесите крем на спонж.\n2. Ветрите в кожу круговыми движениями.\n3. Оставьте на 10 минут, протрите салфеткой.')">Инструкция ➔</button>
                         <label class="add-to-kit"><input type="checkbox" class="prod-check" data-name="Крем-кондиционер Mizilife" data-price="400" onchange="updateCartAndGifts()"><span>В комплект</span></label>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
                         <button class="btn-instruction" onclick="openModal('Twisted Loop полотенце','ИНСТРУКЦИЯ:\nРазложите полотенце на кузов и плавно потяните за края без сильного нажима. После использования просушите в тени.')">Инструкция ➔</button>
                         <label class="add-to-kit"><input type="checkbox" class="prod-check" data-name="Полотенце Twisted Loop" data-price="300" onchange="updateCartAndGifts()"><span>В комплект</span></label>
                     </div>
-        <!-- Боковая панель бонусов (полностью изолирована от товаров) -->
+        <!-- Боковая панель бонусов -->
         <div class="gifts-sidebar">
             <h2>🎁 Бонусы комплекта</h2>
             <p class="gift-info-tag">Собирайте комплект и открывайте крутые бонусы!</p>
@@ -220,34 +220,24 @@
     function sendOrder() {
         const checkboxes = document.querySelectorAll('.prod-check');
         let selectedProducts = [], total = 0;
-        checkboxes.forEach(box => { if (box.checked) { selectedProducts.push(`• ${box.dataset.name} (${box.dataset.price} руб.)`); total += parseInt(box.dataset.price); } });
+        checkboxes.forEach(box => { if (box.checked) { selectedProducts.push(`* ${box.dataset.name} (${box.dataset.price} руб)`); total += parseInt(box.dataset.price); } });
 
         if (selectedProducts.length === 0) { alert('Пожалуйста, добавьте в комплект хотя бы одно средство!'); return; }
         const address = document.getElementById('client-address').value.trim();
         if (!address) { alert('Пожалуйста, введите адрес доставки!'); return; }
 
-        // Сборка чека заказа
-        let message = `🔥 НОВЫЙ ЗАКАЗ «САМ СЕБЕ ДЕТЕЙЛЕР» 🔥\n`;
-        message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖\n`;
-        message += `📦 СОСТАВ КОМПЛЕКТА:\n${selectedProducts.join('\n')}\n\n`;
-        message += `💰 ИТОГО: ${total} руб.\n`;
-        message += total >= 3500 ? `🚚 ДОСТАВКА: Бесплатная (бонус от 3500р включен!)\n` : `🚚 ДОСТАВКА: Платная\n`;
-        message += `📍 АДРЕС: ${address}\n`;
-        message += `➖➖➖➖➖➖➖➖➖➖➖➖➖➖`;
+        // Безопасный чек без спецсимволов и длинных дефисов
+        let message = `НОВЫЙ ЗАКАЗ САМ СЕБЕ ДЕТЕЙЛЕР\n`;
+        message += `СОСТАВ КОМПЛЕКТА:\n${selectedProducts.join('\n')}\n\n`;
+        message += `ИТОГО: ${total} руб.\n`;
+        message += total >= 3500 ? `ДОСТАВКА: Бесплатная (бонус включен)\n` : `ДОСТАВКА: Платная\n`;
+        message += `АДРЕС: ${address}`;
 
-        // Безопасно кодируем текст для передачи в URL
         let encodedText = encodeURIComponent(message);
-
-        // Буквенное имя твоей группы ВК из настроек
         let vkGroupName = "sam_sebe_detailer48"; 
-        
-        // Надежная сборка ссылки без лишних символов и фигурных скобок
         let vkLink = "https://vk.me" + vkGroupName + "?ref=text&ref_source=" + encodedText;
 
-        // Копируем текст в буфер обмена для подстраховки
         navigator.clipboard.writeText(message).catch(() => {});
-
-        // Вызываем модальное окно с рабочей кнопкой
         showOrderModal(vkLink);
     }
 
