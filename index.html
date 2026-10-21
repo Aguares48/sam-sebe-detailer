@@ -145,7 +145,7 @@
                         <div class="product-desc">Деликатный крем для очистки и питания кожи. Препятствует старению обивки, сохраняя её первозданную мягкость.</div>
                     </div>
                     <div class="buttons-group">
-                        <button class="btn-instruction" onclick="openModal('Крем Mizilife','ИНСТРУК> </button>\n1. Нанесите крем на спонж.\n2. Ветрите в кожу круговыми движениями.\n3. Оставьте на 10 минут, протрите салфеткой.')">Инструкция ➔</button>
+                        <button class="btn-instruction" onclick="openModal('Крем Mizilife','ИНСТРУКЦИЯ:\n1. Нанесите крем на спонж.\n2. Ветрите в кожу круговыми движениями.\n3. Оставьте на 10 минут, протрите салфеткой.')">Инструкция ➔</button>
                         <label class="add-to-kit"><input type="checkbox" class="prod-check" data-name="Крем-кондиционер Mizilife" data-price="400" onchange="updateCartAndGifts()"><span>В комплект</span></label>
                     </div>
                 </div>
@@ -226,26 +226,27 @@
         const address = document.getElementById('client-address').value.trim();
         if (!address) { alert('Пожалуйста, введите адрес доставки!'); return; }
 
-        // Безопасный чек без спецсимволов и длинных дефисов
+        // Сборка чистого чека без ломающих спецсимволов
         let message = `НОВЫЙ ЗАКАЗ САМ СЕБЕ ДЕТЕЙЛЕР\n`;
         message += `СОСТАВ КОМПЛЕКТА:\n${selectedProducts.join('\n')}\n\n`;
         message += `ИТОГО: ${total} руб.\n`;
         message += total >= 3500 ? `ДОСТАВКА: Бесплатная (бонус включен)\n` : `ДОСТАВКА: Платная\n`;
         message += `АДРЕС: ${address}`;
 
-        let encodedText = encodeURIComponent(message);
-        let vkGroupName = "sam_sebe_detailer48"; 
-        let vkLink = "https://vk.me" + vkGroupName + "?ref=text&ref_source=" + encodedText;
+        // Железобетонная ссылка на чат через официальный ID сообщества
+        let vkLink = "https://vk.com";
 
+        // Автоматически копируем заказ в буфер обмена
         navigator.clipboard.writeText(message).catch(() => {});
         showOrderModal(vkLink);
     }
 
     function showOrderModal(vkLink) {
-        const modalHtml = `Ваш комплект успешно сформирован, а копия чека сохранена!<br><br>` +
-                          `Нажмите на кнопку ниже. У вас откроется чат, и <b>весь текст заказа уже будет автоматически вставлен в поле ввода</b> — вам останется только нажать кнопку отправки сообщения в ВК!<br><br>` +
-                          `<a href="` + vkLink + `" target="_blank" style="display: inline-block; text-align: center; background: #ff0055; color: #fff; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: bold; font-size: 15px; box-shadow: 0 4px 10px rgba(255,0,85,0.4);">👉 ОТКРЫТЬ ЧАТ И ОТПРАВИТЬ ЗАКАЗ ➔</a><br><br>` +
-                          `<i>Если вдруг ваш браузер или приложение заблокировали автозаполнение текста, просто зажмите поле ввода в чате, выберите <b>«Вставить» (или нажмите Ctrl+V)</b> и отправьте текст. Мы сразу выйдем на связь!</i>`;
+        const modalHtml = `Ваш комплект успешно сформирован, а <b>копия чека уже сохранена в буфер обмена</b>!<br><br>` +
+                          `Нажмите на кнопку ниже, чтобы открыть чат с нашей группой. Вам останется только вставить текст и отправить его нам:<br><br>` +
+                          `<a href="` + vkLink + `" target="_blank" style="display: inline-block; text-align: center; background: #ff0055; color: #fff; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: bold; font-size: 15px; box-shadow: 0 4px 10px rgba(255,0,85,0.4);">👉 ОТКРЫТЬ ЧАТ В ВК ➔</a><br><br>` +
+                          `<b>Как отправить заказ в чате:</b><br>` +
+                          `Просто зажмите пальцем поле ввода сообщения на телефоне (или нажмите <b>Ctrl+V</b> на компьютере), выберите <b>«Вставить»</b> и отправьте чек. Мы сразу выйдем на связь!`;
 
         document.getElementById('mTitle').innerText = '🛒 ЗАКАЗ СФОРМИРОВАН!';
         document.getElementById('mBody').innerHTML = modalHtml;
