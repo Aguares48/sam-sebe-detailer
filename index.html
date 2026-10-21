@@ -128,7 +128,7 @@
             <div class="product-card" style="background-image: url('пластик.jpg');">
                 <div class="card-inner-content">
                     <div>
-                        <div class="card-header-row"><div class="product-title">Восстановитель пластика</div><div class="product-price-tag">600 руб.</div></div>
+                        <div class="card-header-row"><div class="product-title">Восстановитель plasticа</div><div class="product-price-tag">600 руб.</div></div>
                         <div class="product-desc">Глубоко проникающий состав для реставрации структуры пластика. Возвращает насыщенный цвет и матовый блеск.</div>
                     </div>
                     <div class="buttons-group">
@@ -145,7 +145,7 @@
                         <div class="product-desc">Деликатный крем для очистки и питания кожи. Препятствует старению обивки, сохраняя её первозданную мягкость.</div>
                     </div>
                     <div class="buttons-group">
-                        <button class="btn-instruction" onclick="openModal('Крем Mizilife','ИНСТРУКЦИЯ:\n1. Нанесите крем на спонж.\n2. Ветрите в кожу круговыми движениями.\n3. Оставьте на 10 минут, протрите салфеткой.')">Инструкция ➔</button>
+                        <button class="btn-instruction" onclick="openModal('Крем-кондиционер Mizilife','ИНСТРУКЦИЯ:\n1. Нанесите крем на спонж.\n2. Вотрите в кожу круговыми движениями.\n3. Оставьте на 10 минут, протрите салфеткой.')">Инструкция ➔</button>
                         <label class="add-to-kit"><input type="checkbox" class="prod-check" data-name="Крем-кондиционер Mizilife" data-price="400" onchange="updateCartAndGifts()"><span>В комплект</span></label>
                     </div>
                 </div>
@@ -220,21 +220,21 @@
     function sendOrder() {
         const checkboxes = document.querySelectorAll('.prod-check');
         let selectedProducts = [], total = 0;
-        checkboxes.forEach(box => { if (box.checked) { selectedProducts.push(`* ${box.dataset.name} (${box.dataset.price} руб)`); total += parseInt(box.dataset.price); } });
+        checkboxes.forEach(box => { if (box.checked) { selectedProducts.push(`• ${box.dataset.name} (${box.dataset.price} руб.)`); total += parseInt(box.dataset.price); } });
 
         if (selectedProducts.length === 0) { alert('Пожалуйста, добавьте в комплект хотя бы одно средство!'); return; }
         const address = document.getElementById('client-address').value.trim();
         if (!address) { alert('Пожалуйста, введите адрес доставки!'); return; }
 
         // Сборка чистого чека без ломающих спецсимволов
-        let message = `НОВЫЙ ЗАКАЗ САМ СЕБЕ ДЕТЕЙЛЕР\n`;
-        message += `СОСТАВ КОМПЛЕКТА:\n${selectedProducts.join('\n')}\n\n`;
-        message += `ИТОГО: ${total} руб.\n`;
-        message += total >= 3500 ? `ДОСТАВКА: Бесплатная (бонус включен)\n` : `ДОСТАВКА: Платная\n`;
-        message += `АДРЕС: ${address}`;
+        let message = `🔥 НОВЫЙ ЗАКАЗ «САМ СЕБЕ ДЕТЕЙЛЕР» 🔥\n`;
+        message += `📦 СОСТАВ КОМПЛЕКТА:\n${selectedProducts.join('\n')}\n\n`;
+        message += `💰 ИТОГО: ${total} руб.\n`;
+        message += total >= 3500 ? `🚚 ДОСТАВКА: Бесплатная (бонус включен)\n` : `🚚 ДОСТАВКА: Платная\n`;
+        message += `📍 АДРЕС: ${address}`;
 
-        // Железобетонная ссылка на чат через официальный ID сообщества
-        let vkLink = "https://vk.com";
+        // Прямая ссылка на чат группы, работающая везде
+        let vkLink = "https://vk.me";
 
         // Автоматически копируем заказ в буфер обмена
         navigator.clipboard.writeText(message).catch(() => {});
